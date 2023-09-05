@@ -1,0 +1,67 @@
+<assembly>
+    <!-- 描述文件id -->
+    <id>all</id>
+    <formats>
+        <!-- 指定程序集格式, 支持 zip，tar，tar.gz，tar.bz2，jar，dir，war 等 -->
+        <format>tar.gz</format>
+    </formats>
+    <!-- 是否生成和压缩包同名的项目跟目录 -->
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <!-- 用于执行排除或包含某些依赖的操作，一般打包需求时往往不需要配置该标签 -->
+    <dependencySets>
+        <dependencySet>
+            <!-- 该标签默认为true，改为false之后将不会新建文件夹 -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <!-- 文件的输出路径 -->
+            <outputDirectory>.</outputDirectory>
+            <!-- 包含该依赖 -->
+            <!--            <includes>-->
+            <!--                <include>uyun.soft:util-shell:tar.gz</include>-->
+            <!--            </includes>-->
+            <unpack>true</unpack>
+            <!-- 默认即为runtime -->
+            <scope>runtime</scope>
+            <!-- 不包含该依赖 -->
+            <!--            <excludes>-->
+            <!--                <exclude></exclude>-->
+            <!--            </excludes>-->
+            <!-- 默认为false，改为true之后表示解压上面的依赖 -->
+            <!-- 文件权限 读权限为4；写权限为2；执行权限为1；第一位7表示文件所有者所拥有的权限；第二位5表示文件所有者同组用户所拥有的权限；第三位5表示公共用户所拥有的权限-->
+            <fileMode>0755</fileMode>
+        </dependencySet>
+    </dependencySets>
+
+    <!-- 用来设置一组文件在打包时的属性 -->
+    <fileSets>
+        <!-- 这里就是自定义各文件的输出路径 -->
+        <fileSet>
+            <!-- 文件所在项目中的目录，相对于该描述文件的路径 -->
+            <directory>../src/main/resources/middleware/redis/</directory>
+            <!-- 打包后的生成路径，若不存在会直接创建 -->
+            <outputDirectory>/etc/redis/</outputDirectory>
+            <!-- 文件权限 读权限为4；写权限为2；执行权限为1 -->
+            <!-- 第一位表示文件所有者所拥有的权限；第二位表示文件所有者同组用户所拥有的权限；第三位表示公共用户所拥有的权限 -->
+            <fileMode>0644</fileMode>
+        </fileSet>
+
+        <fileSet>
+            <directory>../demo-package/target/</directory>
+            <outputDirectory>/demo-package/</outputDirectory>
+            <includes>
+                <!-- 对应打出来的 jar 名称，可以 maven 设置 build.finalName -->
+                <include>demo-package.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../web/target/classes</directory>
+            <outputDirectory>/demo-package/conf</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>application.yml</include>
+                <include>application-pre.yml</include>
+            </includes>
+        </fileSet>
+
+    </fileSets>
+</assembly>

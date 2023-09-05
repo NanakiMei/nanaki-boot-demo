@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.nanaki</groupId>
+        <artifactId>nanaki-boot-demo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.nanaki.package</groupId>
+    <artifactId>demo-package</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <main-class>com.nanaki.build.BuildApplication</main-class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <!-- 命令激活 mvn clean package -Pdev-->
+            <id>dev</id>
+            <!--传递给脚本的参数值-->
+            <properties>
+                <profile-active>dev</profile-active>
+<!--                <package-name>${scripts_packageName}</package-name>-->
+                <boot-main>${main-class}</boot-main>
+            </properties>
+            <!-- 隐式激活 -->
+            <activation>
+                <!-- 默认激活 -->
+                <activeByDefault>true</activeByDefault>
+                <!-- 根据操作系统激活 -->
+                <os>
+                    <!--  mvn -version 查看 -->
+                    <name>mac os x</name>
+                    <family>mac</family>
+                    <arch>x86_64</arch>
+                    <version>13.5</version>
+                </os>
+                <!-- 根据 JDK 版本激活 -->
+                <jdk>1.8</jdk>
+                <!-- 根据环境变量激活 -->
+                <property>
+                    <!-- mvn -U clean package -Ddebug=true -->
+                    <name>debug</name>
+                    <value>true</value>
+                </property>
+                <!-- 通过判断文件是否存在激活 -->
+                <file>
+                    <missing>/path/missing/file</missing>
+                    <exists>/path/exists/file</exists>
+                </file>
+            </activation>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>demo-package</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>${main-class}</mainClass>
+                        </manifest>
+                    </archive>
+                    <!-- 打包排除项，方便配置文件外置 -->
+                    <excludes>
+                        <exclude>**/*.yml</exclude>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>**/*.sh</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <!-- The configuration of the plugin -->
+                <configuration>
+                    <!-- Specifies the configuration file of the assembly plugin -->
+                    <descriptors>
+                        <descriptor>${project.basedir}/package/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- 绑定到package生命周期 -->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 只运行一次 -->
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <skipAssembly>false</skipAssembly>
+                            <!-- 自定义输出包的名称 -->
+                            <finalName>demo-package</finalName>
+                            <!-- 输出位置 -->
+                            <outputDirectory>target</outputDirectory>
+                            <!-- 该标签默认为true，指定为false后包名将不会自动带上描述文件的id -->
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <!-- 配置描述符文件 -->
+                            <descriptors>
+                                <descriptor>package/assembly.xml</descriptor>
+                            </descriptors>
+                            <!-- 也可以使用Maven预配置的描述符 -->
+                            <!-- Maven预先定义好的描述符有bin，src，project，jar-with-dependencies等 -->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
