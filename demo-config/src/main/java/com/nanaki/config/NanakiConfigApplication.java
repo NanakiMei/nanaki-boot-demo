@@ -1,4 +1,4 @@
-package com.nanaki.springbean;
+package com.nanaki.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,14 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2023/9/4
  */
 @SpringBootApplication
-public class SpringBeanApplication {
+public class NanakiConfigApplication {
 
-    /**
-     * Constructor > @PostConstruct > InitializingBean > init-method > ApplicationRunner > CommandLineRunner
-     * @PreDestroy > DisposableBean > destroyMethod
-     */
     public static void main(String[] args) {
-        SpringApplication.run(SpringBeanApplication.class);
+        SpringApplication.run(NanakiConfigApplication.class);
         System.out.println(
                 "\n __   __   __   __  |__, o     |__   __   __  _|_  \n"
                 + "|  ) (__( |  ) (__( |  \\ |     |__) (__) (__)  |_, \n"

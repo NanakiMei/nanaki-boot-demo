@@ -8,6 +8,9 @@ package com.nanaki.springbean.init;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,38 +26,48 @@ public class DemoBeanConfig {
     }
 
 
-    class Demo implements InitializingBean, DisposableBean {
+    class Demo implements InitializingBean, DisposableBean, ApplicationRunner, CommandLineRunner {
 
         Demo() {
-            System.out.println("============ @Bean");
+            System.out.println(Thread.currentThread().getName() + " ============ @Bean");
         }
 
         public void initMethod() {
-            System.out.println("============ initMethod");
+            System.out.println(Thread.currentThread().getName() + " ============ initMethod");
         }
 
         public void destroyMethod() {
-            System.out.println("============ destroyMethod");
+            System.out.println(Thread.currentThread().getName() + " ============ destroyMethod");
         }
 
         @Override
         public void afterPropertiesSet() throws Exception {
-            System.out.println("============ DemoInitializingBean");
+            System.out.println(Thread.currentThread().getName() + " ============ DemoInitializingBean");
         }
 
         @PostConstruct
         public void init() {
-            System.out.println("============ @PostConstruct");
+            System.out.println(Thread.currentThread().getName() + " ============ @PostConstruct");
         }
 
         @PreDestroy
         public void preDestroy() {
-            System.out.println("============ @PreDestroy");
+            System.out.println(Thread.currentThread().getName() + " ============ @PreDestroy");
         }
 
         @Override
         public void destroy() throws Exception {
-            System.out.println("============ DisposableBean");
+            System.out.println(Thread.currentThread().getName() + " ============ DisposableBean");
+        }
+
+        @Override
+        public void run(ApplicationArguments args) throws Exception {
+            System.out.println(Thread.currentThread().getName() + " ============ ApplicationRunner");
+        }
+
+        @Override
+        public void run(String... args) throws Exception {
+            System.out.println(Thread.currentThread().getName() + " ============ CommandLineRunner");
         }
     }
 

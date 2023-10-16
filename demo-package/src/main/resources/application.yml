@@ -5,4 +5,7 @@ server:
 
 spring:
   profiles:
-    active: @profile-active@
+    active: ${profile-active}
+
+test: ${test}
+test1: ${test1}

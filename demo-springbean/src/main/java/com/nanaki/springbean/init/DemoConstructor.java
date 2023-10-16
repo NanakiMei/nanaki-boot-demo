@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class DemoConstructor {
 
     DemoConstructor() {
-        System.out.println("============ Constructor");
+        System.out.println(Thread.currentThread().getName() + " ============ Constructor");
     }
 
 }

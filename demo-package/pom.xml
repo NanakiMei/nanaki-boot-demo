@@ -32,6 +32,7 @@
             <!--传递给脚本的参数值-->
             <properties>
                 <profile-active>dev</profile-active>
+                <test>test</test>
 <!--                <package-name>${scripts_packageName}</package-name>-->
                 <boot-main>${main-class}</boot-main>
             </properties>
@@ -62,6 +63,7 @@
                 </file>
             </activation>
         </profile>
+
     </profiles>
 
     <build>

@@ -1,4 +1,4 @@
-package com.nanaki.build;
+package com.nanaki.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,18 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author nanaki_1995@163.com
  * @description:
- * @date 2023/8/14
+ * @date 2023/9/15
  */
 @SpringBootApplication
-public class BuildApplication {
-
+public class RestTemplateApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BuildApplication.class);
+        SpringApplication.run(RestTemplateApplication.class);
         System.out.println(
                 "\n __   __   __   __  |__, o     |__   __   __  _|_  \n"
-                + "|  ) (__( |  ) (__( |  \\ |     |__) (__) (__)  |_, \n"
+                        + "|  ) (__( |  ) (__( |  \\ |     |__) (__) (__)  |_, \n"
         );
     }
-
 }

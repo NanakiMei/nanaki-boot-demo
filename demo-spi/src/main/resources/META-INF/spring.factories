@@ -1,0 +1,1 @@
+com.nanaki.spi.demo.ISpringSpi=com.nanaki.spi.demo.ASpi,com.nanaki.spi.demo.BSpi

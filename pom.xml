@@ -11,6 +11,10 @@
     <modules>
         <module>demo-springbean</module>
         <module>demo-designpatterns</module>
+        <module>demo-resttemplate</module>
+        <module>demo-spi</module>
+        <module>demo-apt/demo-apt-core</module>
+        <module>demo-apt/demo-apt-processor</module>
     </modules>
 
     <properties>
@@ -19,6 +23,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring-boot.version>2.7.14</spring-boot.version>
+
+        <fastjson.version>2.0.35</fastjson.version>
+        <auto.version>1.1.1</auto.version>
     </properties>
 
     <dependencyManagement>
@@ -29,6 +36,23 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service-annotations</artifactId>
+                <version>${auto.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>${auto.version}</version>
             </dependency>
 
         </dependencies>
