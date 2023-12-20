@@ -15,6 +15,8 @@
         <module>demo-spi</module>
         <module>demo-apt/demo-apt-core</module>
         <module>demo-apt/demo-apt-processor</module>
+        <module>demo-spring-security</module>
+        <module>demo-common</module>
     </modules>
 
     <properties>
@@ -55,6 +57,11 @@
                 <version>${auto.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.8.18</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
