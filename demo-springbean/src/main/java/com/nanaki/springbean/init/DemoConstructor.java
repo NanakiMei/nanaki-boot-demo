@@ -12,6 +12,11 @@ public class DemoConstructor {
 
     DemoConstructor() {
         System.out.println(Thread.currentThread().getName() + " ============ Constructor");
+        try {
+            Thread.sleep(1000 * 10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
