@@ -14,7 +14,12 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -76,5 +81,24 @@ public class CommonMessageWebSocket {
         }
     }
 
+
+    private static Map<String, List<String>> map = new HashMap<>();
+
+    public static void main(String[] args) {
+        List<String> a = map.get("a");
+        if (Objects.isNull(a)) {
+            List<String> list = new ArrayList<>();
+            list.add("a");
+            map.put("a", list);
+        }
+        System.out.println(map);
+
+        List<String> a2 = map.get("a");
+        a2.add("b");
+        System.out.println(map);
+
+        map.put("b", a2);
+        System.out.println(map);
+    }
 
 }

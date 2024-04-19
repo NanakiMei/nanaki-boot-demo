@@ -18,6 +18,7 @@
         <module>demo-spring-security</module>
         <module>demo-common</module>
         <module>demo-mdc</module>
+        <module>demo-scheduler</module>
     </modules>
 
     <properties>

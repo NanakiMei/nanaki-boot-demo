@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.nanaki.common</groupId>
-    <artifactId>demo-common</artifactId>
+    <groupId>com.nanaki.mdc</groupId>
+    <artifactId>demo-scheduler</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -20,13 +20,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
         </dependency>
     </dependencies>
 
