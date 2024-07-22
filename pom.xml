@@ -19,6 +19,8 @@
         <module>demo-common</module>
         <module>demo-mdc</module>
         <module>demo-scheduler</module>
+        <module>demo-GraphQL</module>
+        <module>demo-spring-event</module>
     </modules>
 
     <properties>

@@ -2,6 +2,7 @@ package com.nanaki.demo.scheduler.task;
 
 import cn.hutool.core.date.DateUtil;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -18,25 +19,26 @@ public class ATask {
     @Scheduled(cron = "0 */1 * * * ?")
     public void cron1() {
         String date = DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss");
-        System.out.println(date + " ======cron1");
+        System.out.println(date + " ======cron1" + "=======" + Thread.currentThread().getName());
     }
 
     @Scheduled(cron = "0 0/1 * * * ?")
     public void cron2() {
         String date = DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss");
-        System.out.println(date + " ======cron2");
+        System.out.println(date + " ======cron2" + "=======" + Thread.currentThread().getName());
     }
 
     @Scheduled(fixedDelay = 10 * 1000)
     public void fixedDelay() {
         String date = DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss");
-        System.out.println(date + " ======fixedDelay");
+        System.out.println(date + " ======fixedDelay" + "=======" + Thread.currentThread().getName());
     }
 
+    @Async
     @Scheduled(fixedRate = 10 * 1000)
     public void fixedRate() {
         String date = DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss");
-        System.out.println(date + " ======fixedRate");
+        System.out.println(date + " ======fixedRate" + "=======" + Thread.currentThread().getName());
     }
 
 }
